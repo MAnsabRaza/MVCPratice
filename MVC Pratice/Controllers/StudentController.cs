@@ -18,7 +18,13 @@ namespace MVC_Pratice.Controllers
             {
                 current_date=DateTime.Now,
             };
-            ViewBag.Student = db.Student.ToList();
+            ViewBag.Student = db.Student.
+                Include(s=>s.Batch).
+                Include(s=>s.Course).
+                Include(s=>s.User).
+                ToList();
+            ViewBag.BatchList = db.Batch.ToList();
+            ViewBag.CourseList=db.Course.ToList();
             return View(model); 
         }
         [HttpPost]
@@ -41,6 +47,8 @@ namespace MVC_Pratice.Controllers
                         existingStudent.userId = Convert.ToInt32(Session["userId"]);
                         db.Entry(existingStudent).State = EntityState.Modified;
                         db.SaveChanges();
+                        TempData["ToastrMessage"] = "Student updated successfully!";
+                        TempData["ToastrType"] = "success";
                     }
                 }
                 else
@@ -49,6 +57,8 @@ namespace MVC_Pratice.Controllers
                     student.current_date = DateTime.Now;
                     db.Student.Add(student);
                     db.SaveChanges();
+                    TempData["ToastrMessage"] = "Student Saved successfully!";
+                    TempData["ToastrType"] = "success";
                 }
                 return RedirectToAction("Index");
             }
@@ -67,6 +77,8 @@ namespace MVC_Pratice.Controllers
             }
             db.Student.Remove(student);
             db.SaveChanges();
+            TempData["ToastrMessage"] = "Student delete successfully!";
+            TempData["ToastrType"] = "success";
             return RedirectToAction("Index");
         }
 
@@ -79,6 +91,8 @@ namespace MVC_Pratice.Controllers
                 return HttpNotFound();
             }
             ViewBag.Student = db.Student.ToList();
+            ViewBag.BatchList = db.Batch.ToList();
+            ViewBag.CourseList = db.Course.ToList();
             return View("Index",student);
         }
 

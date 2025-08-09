@@ -17,7 +17,9 @@ namespace MVC_Pratice.Controllers
             {
                 current_date=DateTime.Now,
             };
-            ViewBag.Course = db.Course.ToList();
+            ViewBag.Course = db.Course.
+                Include(c=>c.User).
+                ToList();
             return View(model);
         }
         [HttpPost]

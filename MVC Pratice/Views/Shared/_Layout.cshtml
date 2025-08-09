@@ -5,34 +5,54 @@
     <title>@ViewBag.Title - My App</title>
     <!-- Tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
     <!--Font-->
-
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
-
     <!--jQuery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
     <!-- Toastr CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
-
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <style>
+        .sidebar-link {
+            transition: all 0.3s ease;
+        }
 
+            .sidebar-link:hover {
+                transform: translateX(4px);
+            }
 
+        .active-link {
+            background: linear-gradient(135deg, #374151, #111827);
+            color: white;
+            box-shadow: 0 4px 12px rgba(75, 85, 99, 0.3);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex flex-col min-h-screen">
-
-    <header class="bg-purple-600 text-white p-4 shadow-md">
+<body class="bg-gradient-to-br from-gray-100 to-gray-200 flex flex-col min-h-screen">
+    <header class="bg-gradient-to-br from-gray-800 to-black text-white p-4 shadow-lg">
         <div class="flex justify-between items-center">
-            <h1 class="text-2xl font-bold">My Dashboard</h1>
+            <div class="flex items-center space-x-3">
+                <div class="bg-white bg-opacity-20 p-2 rounded-lg">
+                    <i class="fas fa-graduation-cap text-2xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold tracking-wide">Student Dashboard</h1>
+            </div>
             <nav>
                 <ul class="flex space-x-4">
                     @if (Session["userName"] != null)
                     {
-                        <span class="text-lg font-medium">Welcome, @Session["userName"]</span>
+                        <div class="flex items-center space-x-3 glass-effect px-4 py-2 rounded-full">
+                            <i class="fas fa-user-circle text-lg"></i>
+                            <span class="text-lg font-medium">Welcome, @Session["userName"]</span>
+                        </div>
                     }
                 </ul>
             </nav>
@@ -40,42 +60,71 @@
     </header>
 
     <div class="flex flex-1">
-
-        <aside class="w-64 bg-white shadow-md p-4">
-            <ul class="space-y-2">
+        <aside class="w-72 bg-white shadow-lg p-6 border-r border-gray-300">
+            <div class="mb-8">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Navigation</h2>
+            </div>
+            <ul class="space-y-3">
                 <li>
-                    @Html.ActionLink("Home", "Home", "Home", null, new { @class = "block px-4 py-2 rounded hover:bg-indigo-100" })
+                    <a href="@Url.Action("Home", "Home")" class="sidebar-link flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium transition-all duration-300">
+                        <i class="fa-solid fa-home"></i>
+                        <span>Home</span>
+                    </a>
                 </li>
                 <li>
-                    @Html.ActionLink("Student", "Index", "Student", null, new { @class = "block px-4 py-2 rounded hover:bg-indigo-100" })
+                    <a href="@Url.Action("Index", "Student")" class="sidebar-link flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium transition-all duration-300">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <span>Student</span>
+                    </a>
                 </li>
                 <li>
-                    @Html.ActionLink("Batch", "Batch", "Batch", null, new { @class = "block px-4 py-2 rounded hover:bg-indigo-100" })
+                    <a href="@Url.Action("Course", "Course")" class="sidebar-link flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium transition-all duration-300">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Courses</span>
+                    </a>
                 </li>
                 <li>
-                    @Html.ActionLink("Course", "Course", "Course", null, new { @class = "block px-4 py-2 rounded hover:bg-indigo-100" })
+                    <a href="@Url.Action("Batch", "Batch")" class="sidebar-link flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium transition-all duration-300">
+                        <i class="fa-solid fa-boxes"></i>
+                        <span>Batches</span>
+                    </a>
                 </li>
-
                 <li>
-                    @Html.ActionLink("User Management", "Index", "User", null, new { @class = "block px-4 py-2 rounded hover:bg-indigo-100" })
+                    <a href="@Url.Action("Index", "User")" class="sidebar-link flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium transition-all duration-300">
+                        <i class="fa-solid fa-home"></i>
+                        <span>User Management</span>
+                    </a>
                 </li>
-                <li>
-                    @Html.ActionLink("Logout", "Logout", "Auth", null, new { @class = "block px-4 py-2 rounded hover:bg-indigo-100" })
+                <li class="pt-4 border-t border-gray-300 mt-6">
+                    <a href="@Url.Action("Logout", "Auth")" class="sidebar-link flex items-center space-x-3 px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 hover:text-red-700 font-medium transition-all duration-300">
+                        <i class="fa fa-sign-out"></i>
+                        <span>Logout</span>
+                    </a>
                 </li>
             </ul>
         </aside>
 
-        <main class="flex-1 p-6">
-            @RenderBody()
+        <main class="flex-1 p-8 bg-gray-100">
+                @RenderBody()
         </main>
     </div>
-    <footer class="bg-gray-200 text-center p-4">
-        <p>&copy; @DateTime.Now.Year - My App</p>
-    </footer>
 
+    <footer class="bg-gradient-to-r from-gray-800 to-black text-white text-center p-6 shadow-md">
+        <div class="flex justify-center items-center space-x-2">
+            <i class="fas fa-copyright"></i>
+            <p class="font-medium">@DateTime.Now.Year - My App. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
     $(document).ready(function () {
+        var currentPath = window.location.pathname;
+        $('.sidebar-link').each(function() {
+            if ($(this).attr('href') === currentPath) {
+                $(this).addClass('active-link');
+            }
+        });
+
         @if (TempData["ToastrMessage"] != null)
         {
             <text>
@@ -83,14 +132,17 @@
                     "closeButton": true,
                     "progressBar": true,
                     "positionClass": "toast-top-right",
-                    "timeOut": "3000"
+                    "timeOut": "3000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
                 };
                 toastr["@TempData["ToastrType"]"]("@TempData["ToastrMessage"]");
             </text>
         }
     });
     </script>
-
-
 </body>
 </html>

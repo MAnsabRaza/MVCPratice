@@ -18,7 +18,9 @@ namespace MVC_Pratice.Controllers
             {
                 current_date = DateTime.Now,
             };
-            ViewBag.Batch = db.Batch.ToList();
+            ViewBag.Batch = db.Batch.
+                Include(b=>b.User).
+                ToList();
             return View(model);
         }
         [HttpPost]
@@ -40,6 +42,8 @@ namespace MVC_Pratice.Controllers
                         existingBatch.userId = Convert.ToInt32(Session["userId"]);
                         db.Entry(existingBatch).State = EntityState.Modified;
                         db.SaveChanges();
+                        TempData["ToastrMessage"] = "Batch updated successfully!";
+                        TempData["ToastrType"] = "success";
                     }
 
                 }
@@ -49,6 +53,8 @@ namespace MVC_Pratice.Controllers
                     batch.current_date= DateTime.Now;
                     db.Batch.Add(batch);
                     db.SaveChanges();
+                    TempData["ToastrMessage"] = "Batch Saved successfully!";
+                    TempData["ToastrType"] = "success";
                 }
 
                 return RedirectToAction("Batch");
@@ -64,6 +70,8 @@ namespace MVC_Pratice.Controllers
             {
                 db.Batch.Remove(batch);
                 db.SaveChanges();
+                TempData["ToastrMessage"] = "Batch Delete successfully!";
+                TempData["ToastrType"] = "success";
             }
             return RedirectToAction("Batch");
         }

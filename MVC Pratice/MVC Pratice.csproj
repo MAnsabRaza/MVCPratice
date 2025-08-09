@@ -156,6 +156,10 @@
     <Compile Include="Migrations\202508091004519_Initial.Designer.cs">
       <DependentUpon>202508091004519_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202508091436584_correctStudentTable.cs" />
+    <Compile Include="Migrations\202508091436584_correctStudentTable.Designer.cs">
+      <DependentUpon>202508091436584_correctStudentTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Batch.cs" />
@@ -255,6 +259,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202508091004519_Initial.resx">
       <DependentUpon>202508091004519_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508091436584_correctStudentTable.resx">
+      <DependentUpon>202508091436584_correctStudentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
