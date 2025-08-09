@@ -144,17 +144,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\BatchController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202508061831211_InitialCreate.cs" />
-    <Compile Include="Migrations\202508061831211_InitialCreate.Designer.cs">
-      <DependentUpon>202508061831211_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202508091004519_Initial.cs" />
+    <Compile Include="Migrations\202508091004519_Initial.Designer.cs">
+      <DependentUpon>202508091004519_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
+    <Compile Include="Models\Batch.cs" />
+    <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\User.cs" />
@@ -212,6 +217,10 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Shared\_AuthLayout.cshtml" />
+    <Content Include="Views\Course\Course.cshtml" />
+    <Content Include="Views\Batch\Batch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -244,8 +253,8 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202508061831211_InitialCreate.resx">
-      <DependentUpon>202508061831211_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202508091004519_Initial.resx">
+      <DependentUpon>202508091004519_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

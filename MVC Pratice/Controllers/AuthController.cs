@@ -46,7 +46,8 @@ namespace MVC_Pratice.Controllers
             {
                 Session["userId"] = user.Id;
                 Session["userEmail"] = user.email;
-                return RedirectToAction("Index", "Student");
+                Session["userName"] = user.name;
+                return RedirectToAction("Home", "Home");
             }
 
             ViewBag.Error = "Invalid email or password";
