@@ -33,6 +33,8 @@ namespace MVC_Pratice.Controllers
                 user.password = BCrypt.Net.BCrypt.HashPassword(user.password);
                 db.User.Add(user);
                 db.SaveChanges();
+                TempData["ToastrMessage"] = "User Added successfully!";
+                TempData["ToastrType"] = "success";
                 return RedirectToAction("Login");
             }
             return View(user);
@@ -41,12 +43,14 @@ namespace MVC_Pratice.Controllers
         [HttpPost]
         public ActionResult Login(Login login)
         {
-            var user = db.User.FirstOrDefault(u => u.email == login.email && u.password == login.password);
-            if (user != null)
+            var user = db.User.FirstOrDefault(u => u.email == login.email);
+            if (user != null && BCrypt.Net.BCrypt.Verify(login.password,user.password))
             {
                 Session["userId"] = user.Id;
                 Session["userEmail"] = user.email;
                 Session["userName"] = user.name;
+                TempData["ToastrMessage"] = "User Login successfully!";
+                TempData["ToastrType"] = "success";
                 return RedirectToAction("Home", "Home");
             }
 

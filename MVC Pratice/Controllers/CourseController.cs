@@ -13,8 +13,12 @@ namespace MVC_Pratice.Controllers
         private AppDbContext db = new AppDbContext();
         public ActionResult Course()
         {
+            var model = new Course
+            {
+                current_date=DateTime.Now,
+            };
             ViewBag.Course = db.Course.ToList();
-            return View(new Course());
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -36,6 +40,8 @@ namespace MVC_Pratice.Controllers
                         existingCourse.userId = Convert.ToInt32(Session["userId"]);
                         db.Entry(existingCourse).State = EntityState.Modified;
                         db.SaveChanges();
+                        TempData["ToastrMessage"] = "Course updated successfully!";
+                        TempData["ToastrType"] = "success";
                     }
                 }
                 else
@@ -44,6 +50,8 @@ namespace MVC_Pratice.Controllers
                     course.current_date = DateTime.Now;
                     db.Course.Add(course);
                     db.SaveChanges();
+                    TempData["ToastrMessage"] = "Course Created successfully!";
+                    TempData["ToastrType"] = "success";
                 }
                 return RedirectToAction("Course");
             }
@@ -61,6 +69,8 @@ namespace MVC_Pratice.Controllers
             }
             db.Course.Remove(course);
             db.SaveChanges();
+            TempData["ToastrMessage"] = "Course deleted successfully!";
+            TempData["ToastrType"] = "success";
             return RedirectToAction("Course");
 
         }

@@ -3,7 +3,25 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title - My App</title>
+    <!-- Tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!--Font-->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!-- Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
 
@@ -32,6 +50,13 @@
                     @Html.ActionLink("Student", "Index", "Student", null, new { @class = "block px-4 py-2 rounded hover:bg-indigo-100" })
                 </li>
                 <li>
+                    @Html.ActionLink("Batch", "Batch", "Batch", null, new { @class = "block px-4 py-2 rounded hover:bg-indigo-100" })
+                </li>
+                <li>
+                    @Html.ActionLink("Course", "Course", "Course", null, new { @class = "block px-4 py-2 rounded hover:bg-indigo-100" })
+                </li>
+
+                <li>
                     @Html.ActionLink("User Management", "Index", "User", null, new { @class = "block px-4 py-2 rounded hover:bg-indigo-100" })
                 </li>
                 <li>
@@ -47,6 +72,25 @@
     <footer class="bg-gray-200 text-center p-4">
         <p>&copy; @DateTime.Now.Year - My App</p>
     </footer>
+
+
+    <script>
+    $(document).ready(function () {
+        @if (TempData["ToastrMessage"] != null)
+        {
+            <text>
+                toastr.options = {
+                    "closeButton": true,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "timeOut": "3000"
+                };
+                toastr["@TempData["ToastrType"]"]("@TempData["ToastrMessage"]");
+            </text>
+        }
+    });
+    </script>
+
 
 </body>
 </html>

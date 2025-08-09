@@ -12,7 +12,7 @@ namespace MVC_Pratice.Models
         public DateTime current_date { get; set; }
         public string student_name {  get; set; }
         public int age {  get; set; }
-        public string batch {  get; set; }
+        public string address {  get; set; }
         public int userId {  get; set; }
         [ForeignKey("userId")]
         public virtual User User { get; set; }
