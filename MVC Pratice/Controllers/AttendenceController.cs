@@ -18,7 +18,7 @@ namespace MVC_Pratice.Controllers
             {
                 current_date = DateTime.Now,
             };
-            ViewBag.Attendance=db.Attendance.
+            ViewBag.Attendence= db.Attendance.
                 Include(a=>a.User).
                 Include(a=>a.Student).
                 Include(a=>a.Course).
