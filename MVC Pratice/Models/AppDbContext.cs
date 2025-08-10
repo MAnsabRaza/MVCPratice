@@ -16,7 +16,7 @@ namespace MVC_Pratice.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Student relationships
+
             modelBuilder.Entity<Student>()
                 .HasRequired(s => s.Course)
                 .WithMany()
@@ -29,21 +29,20 @@ namespace MVC_Pratice.Models
                 .HasForeignKey(s => s.batchId)
                 .WillCascadeOnDelete(false);
 
-            // Course → User
+            
             modelBuilder.Entity<Course>()
                 .HasRequired(c => c.User)
                 .WithMany()
                 .HasForeignKey(c => c.userId)
                 .WillCascadeOnDelete(false);
 
-            // Batch → User
+            
             modelBuilder.Entity<Batch>()
                 .HasRequired(b => b.User)
                 .WithMany()
                 .HasForeignKey(b => b.userId)
                 .WillCascadeOnDelete(false);
 
-            // Mark relationships
             modelBuilder.Entity<Mark>()
                 .HasRequired(m => m.Student)
                 .WithMany()
@@ -62,7 +61,7 @@ namespace MVC_Pratice.Models
                 .HasForeignKey(m => m.userId)
                 .WillCascadeOnDelete(false);
 
-            // Enrollment relationships
+          
             modelBuilder.Entity<Enrollment>()
                 .HasRequired(e => e.Student)
                 .WithMany()
@@ -75,7 +74,7 @@ namespace MVC_Pratice.Models
                 .HasForeignKey(e => e.courseId)
                 .WillCascadeOnDelete(false);
 
-            // Attendance relationships
+            
             modelBuilder.Entity<Attendance>()
                 .HasRequired(a => a.Student)
                 .WithMany()

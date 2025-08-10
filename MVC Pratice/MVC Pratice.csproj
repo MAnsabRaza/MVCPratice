@@ -143,10 +143,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AttendenceController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BatchController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\EnrollmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MarkController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -224,6 +227,9 @@
     <Content Include="Views\Shared\_AuthLayout.cshtml" />
     <Content Include="Views\Course\Course.cshtml" />
     <Content Include="Views\Batch\Batch.cshtml" />
+    <Content Include="Views\Attendence\Attendence.cshtml" />
+    <Content Include="Views\Enrollment\Enrollment.cshtml" />
+    <Content Include="Views\Mark\Mark.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
