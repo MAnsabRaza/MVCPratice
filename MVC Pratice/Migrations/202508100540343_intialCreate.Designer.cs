@@ -7,13 +7,13 @@ namespace MVC_Pratice.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class correctStudentTable : IMigrationMetadata
+    public sealed partial class intialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(correctStudentTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(intialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202508091436584_correctStudentTable"; }
+            get { return "202508100540343_intialCreate"; }
         }
         
         string IMigrationMetadata.Source

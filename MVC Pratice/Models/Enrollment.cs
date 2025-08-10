@@ -6,18 +6,15 @@ using System.Web;
 
 namespace MVC_Pratice.Models
 {
-    public class Student
+    public class Enrollment
     {
         public int Id { get; set; }
-        public DateTime current_date { get; set; }
-        public string student_name {  get; set; }
-        public int age {  get; set; }
-        public string address {  get; set; }
+        public DateTime current_date {  get; set; }
+        public int studentId {  get; set; }
+        [ForeignKey("studentId")]
+        public virtual Student Student { get; set; }
         public int courseId { get; set; }
         [ForeignKey("courseId")]
         public virtual Course Course { get; set; }
-        public int batchId {  get; set; }
-        [ForeignKey("batchId")]
-        public virtual Batch Batch { get; set; }
     }
 }

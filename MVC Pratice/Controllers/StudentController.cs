@@ -21,7 +21,6 @@ namespace MVC_Pratice.Controllers
             ViewBag.Student = db.Student.
                 Include(s=>s.Batch).
                 Include(s=>s.Course).
-                Include(s=>s.User).
                 ToList();
             ViewBag.BatchList = db.Batch.ToList();
             ViewBag.CourseList=db.Course.ToList();
@@ -44,7 +43,6 @@ namespace MVC_Pratice.Controllers
                         existingStudent.student_name = student.student_name;
                         existingStudent.age = student.age;
                         existingStudent.address = student.address;
-                        existingStudent.userId = Convert.ToInt32(Session["userId"]);
                         db.Entry(existingStudent).State = EntityState.Modified;
                         db.SaveChanges();
                         TempData["ToastrMessage"] = "Student updated successfully!";
@@ -53,7 +51,6 @@ namespace MVC_Pratice.Controllers
                 }
                 else
                 {
-                    student.userId=Convert.ToInt32(Session["userId"]);
                     student.current_date = DateTime.Now;
                     db.Student.Add(student);
                     db.SaveChanges();

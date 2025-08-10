@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace MVC_Pratice.Models
 {
@@ -10,46 +6,92 @@ namespace MVC_Pratice.Models
     {
         public AppDbContext() : base("DefaultConnection") { }
 
-        public DbSet<Student> Student { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<Course> Course { get; set; }
-        public DbSet<Batch> Batch { get; set; }
+        public DbSet<User> User { get; set; }        
+        public DbSet<Student> Student { get; set; }   
+        public DbSet<Course> Course { get; set; }     
+        public DbSet<Batch> Batch { get; set; }      
+        public DbSet<Mark> Mark { get; set; }         
+        public DbSet<Enrollment> Enrollment { get; set; } 
+        public DbSet<Attendance> Attendance { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Student → Course (No cascade delete)
+            // Student relationships
             modelBuilder.Entity<Student>()
                 .HasRequired(s => s.Course)
                 .WithMany()
                 .HasForeignKey(s => s.courseId)
                 .WillCascadeOnDelete(false);
 
-            // Student → Batch (No cascade delete)
             modelBuilder.Entity<Student>()
                 .HasRequired(s => s.Batch)
                 .WithMany()
                 .HasForeignKey(s => s.batchId)
                 .WillCascadeOnDelete(false);
 
-            // Student → User (No cascade delete to avoid multiple paths)
-            modelBuilder.Entity<Student>()
-                .HasRequired(s => s.User)
-                .WithMany()
-                .HasForeignKey(s => s.userId)
-                .WillCascadeOnDelete(false);
-
-            // Course → User (Keep or remove cascade delete as needed)
+            // Course → User
             modelBuilder.Entity<Course>()
                 .HasRequired(c => c.User)
                 .WithMany()
                 .HasForeignKey(c => c.userId)
                 .WillCascadeOnDelete(false);
 
-            // Batch → User (Keep or remove cascade delete as needed)
+            // Batch → User
             modelBuilder.Entity<Batch>()
                 .HasRequired(b => b.User)
                 .WithMany()
                 .HasForeignKey(b => b.userId)
+                .WillCascadeOnDelete(false);
+
+            // Mark relationships
+            modelBuilder.Entity<Mark>()
+                .HasRequired(m => m.Student)
+                .WithMany()
+                .HasForeignKey(m => m.studentId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Mark>()
+                .HasRequired(m => m.Course)
+                .WithMany()
+                .HasForeignKey(m => m.courseId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Mark>()
+                .HasRequired(m => m.User)
+                .WithMany()
+                .HasForeignKey(m => m.userId)
+                .WillCascadeOnDelete(false);
+
+            // Enrollment relationships
+            modelBuilder.Entity<Enrollment>()
+                .HasRequired(e => e.Student)
+                .WithMany()
+                .HasForeignKey(e => e.studentId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Enrollment>()
+                .HasRequired(e => e.Course)
+                .WithMany()
+                .HasForeignKey(e => e.courseId)
+                .WillCascadeOnDelete(false);
+
+            // Attendance relationships
+            modelBuilder.Entity<Attendance>()
+                .HasRequired(a => a.Student)
+                .WithMany()
+                .HasForeignKey(a => a.studentId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Attendance>()
+                .HasRequired(a => a.Course)
+                .WithMany()
+                .HasForeignKey(a => a.courseId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Attendance>()
+                .HasRequired(a => a.User)
+                .WithMany()
+                .HasForeignKey(a => a.userId)
                 .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);

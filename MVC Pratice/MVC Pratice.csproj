@@ -152,19 +152,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202508091004519_Initial.cs" />
-    <Compile Include="Migrations\202508091004519_Initial.Designer.cs">
-      <DependentUpon>202508091004519_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202508091436584_correctStudentTable.cs" />
-    <Compile Include="Migrations\202508091436584_correctStudentTable.Designer.cs">
-      <DependentUpon>202508091436584_correctStudentTable.cs</DependentUpon>
+    <Compile Include="Migrations\202508100540343_intialCreate.cs" />
+    <Compile Include="Migrations\202508100540343_intialCreate.Designer.cs">
+      <DependentUpon>202508100540343_intialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
+    <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Batch.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Mark.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,11 +256,8 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202508091004519_Initial.resx">
-      <DependentUpon>202508091004519_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202508091436584_correctStudentTable.resx">
-      <DependentUpon>202508091436584_correctStudentTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202508100540343_intialCreate.resx">
+      <DependentUpon>202508100540343_intialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
