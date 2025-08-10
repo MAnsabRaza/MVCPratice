@@ -14,7 +14,7 @@ namespace MVC_Pratice.Controllers
         // GET: Enrollment
         public ActionResult Enrollment()
         {
-            var model = new Mark
+            var model = new Enrollment
             {
                 current_date = DateTime.Now,
             };
@@ -37,7 +37,7 @@ namespace MVC_Pratice.Controllers
             {
                 if (enrollment.Id > 0)
                 {
-                    var existingEnrollment = db.Mark.Find(enrollment.Id);
+                    var existingEnrollment = db.Enrollment.Find(enrollment.Id);
                     if (existingEnrollment != null)
                     {
                         existingEnrollment.current_date = enrollment.current_date;
